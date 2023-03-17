@@ -1,7 +1,7 @@
 # Netvork
 Social media app using flask
 Netvork provides a platform for people to share their thoughts, experiences, and ideas, and to engage with others in meaningful ways. With a clean and user-friendly interface, Netvork aims to create a positive online environment for people to connect and engage with each other.
-
+![screenshot](https://github.com/haleelsada/Netvork/blob/main/static/photos/ss%20Netvork.png?raw=true)
 ## Technologies used
 The following technologies were used to build this app:
 - Flask for API and backend
