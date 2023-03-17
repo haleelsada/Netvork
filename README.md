@@ -54,3 +54,9 @@ sh local_beat.sh
 ```
 http://127.0.0.1:8080/
 ```
+
+## Contributers
+[Haleel Sada](https://github.com/haleelsada)
+## Licence
+This project is licensed under the MIT License - see the [LICENSE] file for details.
+
