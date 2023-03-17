@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">	
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script>
+    	if ("{{token}}".length>2){
+		localStorage.setItem("Token","{{ token }}");
+		}
+	</script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+
+	
+    <style>
+			body{
+				margin: 0;
+				background-color:#0c151c;
+				padding-top:100px;
+				text-align:center;
+			}
+			.input{
+				margin:0px 5px 20px 0px;
+				
+				}
+			.form1 {
+				width:520px;
+				margin:100px auto;
+				}
+			
+			.button{
+				width:100px;
+				height:50px;
+				color:#0c151c;
+				font-weight:bold;
+				}
+			.navbar{
+				background-color:#000a15;
+				
+				}
+			.nav-link{
+				color:#c1bcff;
+				}
+			.navbar-nav{
+				display:flex;
+				flex-direction:row;
+				}
+			.nav-item{
+				border-radius: 9px;
+				padding: 0px 8px 0px 8px;
+				margin-left:22px;
+				font-weight: bold;
+				}
+			.nav-item:hover{
+				background-color:#c1bcff;
+				}
+			.active{
+	  			background-color: #c1bcff;
+	  			
+	  			}
+	  		.container{
+	  			margin:0px 0px 0px 0px;
+	  			
+	  			}
+	  		.flex-container {
+					display: inline-flex;
+					margin:10px 0px 0px 20px;
+					height: 83vh;
+					
+					
+					overflow-x: scroll;
+				}
+			
+
+			.flex-child {
+				text-align:center;
+				width:400px;
+				height:92%;
+				margin:30px;
+				background-color:#113e4c;
+				border-radius:20px;
+				border:6px solid; 
+				border-color: #3a8495;
+				overflow-y:scroll;
+				padding-bottom:10px;
+
+			}
+			.boxheader{
+				color:#c1bcff;
+				margin:10px;
+				background-color:#001226;
+				border-radius:12px;
+				
+				}
+			.cards{
+				background-color:#3c9cb3;
+				width:350px;
+				display: block;
+				overflow: auto;
+				margin:auto;
+				margin-bottom:8px;
+				margin-top:8px;
+				padding-top:0px;
+				border-radius:16px;
+				
+			}
+			.cardheader{
+				color:#c1bcff;
+				margin:10px;
+				background-color:#001226;
+				border-radius:12px;
+				
+				}
+			canvas{
+				padding:20px; 
+				color:black;
+			}	
+			
+			
+			a{ 
+				text-decoration: none;
+				color:inherit;
+				}
+			a:hover {color:#000a15;}			
+			
+    		.flex-button{
+    			display: flex;
+  				align-items: center;
+				width:250px;
+				margin:20px;
+				
+				}
+		.col{
+				padding:0px;
+				margin:0px;
+				
+				}
+		.col1{
+				padding:0px;
+				margin:20px;
+				}
+		.row{
+			padding:0px;
+			margin:0px;
+			
+			}
+		.row1{
+			border: solid #1a2026;
+			border-radius: 20px;
+			margin: 10px;
+			}
+		.row1:hover {color:#000a15; background-color:#c1bcff;}
+		.btn:hover {color:#000a15; background-color:#c1bcff;}
+		.box1{
+			overflow-y: auto;
+			max-height:390px;
+			padding:15px;
+			}
+		.box2{display: none;}
+		
+		p{
+			margin-bottom:11px;
+			background-color:#a49df4;
+			border-radius:6px; 
+			font-size:18px; 
+			font-weight: bold;
+			}
+		.p1{
+			background-color:#3c9cb3;	
+		}
+		.cell{
+				background-color:#c1bcff;
+				border-radius:20px;
+				height:auto;
+				padding:0px 15px 10px 15px;
+				
+				}
+		
+    	.row-height{
+	 	 height: 85vh;
+		}
+		
+
+		.left{
+			  background-color: #0c151c;
+			  height: 100%;
+			  overflow-y: scroll;
+			  color:white;
+			}
+
+		.right{
+			  background-color: #0c151c;
+			  height: 100%;
+			  overflow-y: scroll;
+			  color:white;
+			}
+		
+
+		.mid{
+			  background-color: #0c151c;
+			  height: 100%;
+			  color:white;
+			  overflow-y: scroll;
+			  border-style: none solid none solid;
+		      border-color: #262d33;
+			}
+		.post{
+			margin:14px;
+			border-radius:20px;
+			background-color: #0b2b43;
+			}
+		.dp_small{
+			width: 80px;
+			height: 80px;
+			border-radius: 50%;
+			object-fit: cover;
+			border-color: black;
+			padding: 3px;
+			border: 5px solid #1a2026;
+			margin:15px 10px 10px 0px;
+			
+			}
+		.dp_big{			
+			  width: 450px;
+			  height: 450px;
+			  border-radius: 50%;
+			  object-fit: cover;
+			  border-color: black;
+			  padding: 8px;
+			  border: 13px solid #1a2026;
+			  margin: 15px 10px 10px 0px;
+						
+			}
+		.profphotos:hover {
+			opacity:0.8;
+		}
+		.profphotos{
+			width: 480px;
+			height: 480px;
+			margin-bottom: 30px;
+			border-color: black;
+			color: #738da2;
+			border-radius: 10px;
+			object-fit: cover;
+						
+			}
+		.post_content{
+			width: 90%;
+			border-radius: 30px;
+			margin: 10px 0px 30px 0px;
+			}
+			
+		.btn{
+			width: 80%;
+			height: 70px;
+			border-radius: 30px;
+			padding: 15px;
+			background-color: #0b2b43;
+			border-color: #0b2b43;
+			margin: 10px;
+			margin-top: 20px;
+
+			}
+		#q{
+		    height: 48px;
+		    border-radius: 15px;
+		    margin-left: 12px;
+		    padding-left: 8px;
+		    margin: 30px 0px 10px 0px;
+		
+		}
+		
+		.li1{
+			margin-left: -40px;
+			list-style-type: none;
+			margin-top: 5px;
+			margin-bottom: 5px;
+
+		}
+		a {
+			text-decoration: none;
+			color:white;
+		}
+		#result{
+			background-color: #0b2b43;
+		    margin: 0px 10px 0px 20px;
+		    border-radius: 10px;
+		    padding-top: 8px;
+		    margin-bottom:10px;
+		}
+		.button2{
+		width: 327px;
+		text-align: left;
+		border-radius: 15px;
+		background-color: #0c151c;
+		color: white;
+		border-color: #0c151c;
+		margin-left: -8px;
+		padding-left: 10px;
+		padding-bottom: 5px;
+		padding-top: 5px;
+		}
+		.button2:hover{
+			background-color:#c1bcff;
+			color:#000a15;
+			}
+		.postbtn{
+			background-color: transparent;
+			border-color: transparent;
+			font-weight: bold;
+			color: white;
+		}
+		.postbtn:hover{
+			color:#000a15;
+			}
+		.download{
+			background-color: #0b2b43;
+			border-bottom-width: 0px;
+			border-bottom-style: solid;
+			border-right-width: 0px;
+			border-right-style: solid;
+			border-top-width: 0px;
+			border-top-style: solid;
+			border-left-width: 0px;
+			border-left-style: solid;
+			padding-left: 0px;
+			padding-right: 0px;
+		}
+		</style>
+    
+</head>
+<body>
+
+<script>
+	var search_terms = [];
+	
+	users=JSON.parse(localStorage.getItem("data"))[3]
+
+
+	for (i=0; i<users.length; i++){
+	  search_terms.push(users[i][1].toLowerCase()) 
+	}
+
+	function autocompleteMatch(input) {
+	  if (input == '') {
+		return [];
+	  }
+	  var reg = new RegExp(input)
+	  return search_terms.filter(function(term) {
+		  if (term.match(reg)) {
+	  	  return term;
+		  }
+	  });
+	}
+	
+	function userid(name){
+		let users=JSON.parse(localStorage.getItem("data"))[3];
+
+		for (i=0; i<users.length; i++){
+		    if (users[i][1].toLowerCase()==name){
+
+		    	localStorage.setItem('id',users[i][0]);
+		}
+		
+	}
+	//console.log(window.location.href)
+ 	window.location = "http://127.0.0.1:8080/profile"; 
+ 	return false 
+	}
+
+
+	function showResults(val) {
+	  res = document.getElementById("result");
+	  res.innerHTML = '';
+	  let list = '';
+	  let terms = autocompleteMatch(val);
+	  for (i=0; i<terms.length; i++) {
+	  	if (JSON.parse(localStorage.getItem("data"))[1].toLowerCase()!=terms[i]){
+	  		cnf="userid('"+terms[i]+"')"
+		  	str='<li class="li1"><button class="button2" onclick="'+cnf+'">'
+			list += str + '<b>'+terms[i] + '</b></button></li>';
+	  		}
+	  	}
+	  res.innerHTML = '<ul>' + list + '</ul>';
+	}
+
+</script>
+
+<div class="container-flex" id="app">
+<div class="col">
+  <nav class="navbar fixed-top navbar-fluid">
+  
+	  <div class="navbar-header">
+		<h3 id="welcom" style="color:#c1bcff; padding:10px;"><b>WELCOME </b></h3>
+	  </div>
+  
+    
+    	<ul class="navbar-nav" style="margin-right:15px;">
+		  <li>
+		  </li>
+		  <li class="nav-item"><router-link class="nav-link"  to="/">Home</router-link></li>
+		  <li class="nav-item"><router-link class="nav-link" to="/profile">Profile</router-link> </li>
+		  <li class="nav-item"><a class="nav-link" href="/logout" onclick="return confirm('Are you sure?')">Logout</a></li>
+		</ul>
+  
+  </nav>
+</div>
+
+    <div class="row">
+        <div class="col">
+       <router-view></router-view>
+        </div>    
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="{{url_for('static', filename='application.js')}}"></script>
+
+		
+	
+</html>

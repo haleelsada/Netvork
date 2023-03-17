@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: Netvork vlog - OpenAPI 3.0
+  description: |-
+    This is the OpenAPI 3.0 specification for a vlog app name **Network**
+
+  contact:
+    email: haleelsada@gmail.com
+  version: 1.0.0
+
+servers:
+  - url: http://127.0.0.1:8080/api
+tags:
+  - name: user
+    description: Access user data and manage vlog
+  - name: test
+    description: Manage user information and post
+
+paths:
+  /user:
+    put:
+      tags:
+        - user
+      summary: Edit post
+      description: Update an existing post with Id
+      requestBody:
+        description: Update an existent post in vlog
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/post_update'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/post_update'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_update'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Operation failed
+
+    post:
+      tags:
+        - user
+      summary: Add a new post
+      description: Add a new post to vlog
+      requestBody:
+        description: Create a new post
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/post'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/post'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Operation failed
+      
+
+    get:
+      tags:
+        - user
+      summary: Acces vlog data
+      description: Access data about current user and posts
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/data'          
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/data'
+        '400':
+          description: Invalid status value
+            
+    delete:
+      tags:
+        - user
+      summary: delete post
+      description: ''
+      parameters:
+        - name: id
+          in: query
+          description: ID post to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+        
+      responses:
+        '200':
+          description: successful operation
+        
+  /test:
+    put:
+      tags:
+        - test
+      summary: Manage following
+      description: Manage following and unfollowing of users
+      parameters:
+        - name: id
+          in: query
+          description: Id of user following or unfollowing
+          required: true
+          schema:
+            type: integer
+            example: 9
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Coudn't process request
+          
+          
+components:
+  schemas:
+    post_update:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        postname:
+          type: string
+          example: post title
+        caption:
+          type: string
+          example: new post caption
+        photo:
+          type: string
+          format: binary
+         
+      xml:
+        name: post_update
+    post:
+      type: object
+      properties:
+        postname:
+          type: string
+          example: post title
+        caption:
+          type: string
+          example: new post caption
+        photo:
+          type: string
+          format: binary
+         
+      xml:
+        name: post
+    data:
+      type: object
+      properties:
+        uid:
+          type: integer
+          example: 7
+        username:
+          type: string
+          example: John wick
+        posts:
+          type: array
+          items:
+            type: object
+        users:
+          type: array
+          items:
+            type: object
+      xml:
+        name: data
+
+
