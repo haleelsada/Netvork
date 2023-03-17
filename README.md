@@ -29,6 +29,8 @@ The app has the following features:
 
 To run this app on your local machine, follow these steps:
 
+Install `DB Browser for SQlite` to manage database and `Redis` for jobs and database
+
 1.Clone this repository
 ```
 git clone https://github.com/haleelsada/Netvork.git
