@@ -10,3 +10,4 @@ redis
 celery[redis]
 Flask-Caching
 requests
+flask_socketio
