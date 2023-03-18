@@ -160,4 +160,13 @@ class API(Resource):
             return 200
         except:
             abort(400,'Operation failed')
-
+	
+    @jwt_required()
+    def post(self):
+        try:
+            pid = request.args.get('pid')
+            uid = request.args.get('uid')
+            tasks.export.delay(uid,pid)
+            return 200
+        except:
+            abort(400,'Operation failed')
