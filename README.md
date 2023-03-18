@@ -60,6 +60,19 @@ sh local_beat.sh
 ```
 http://127.0.0.1:8080/
 ```
+```
+here are few default users:
+name: batman@gmail.com
+password: batman
+name: thomasshelby@gmail.com
+password: thomas
+name: jacksparrow@gmail.com
+password: jack
+name: jamesbond@gmail.cm
+password: james
+name: joker@gmail.com
+password: joker
+```
 
 ## Contributers
 [Haleel Sada](https://github.com/haleelsada)
