@@ -40,19 +40,23 @@ git clone https://github.com/haleelsada/Netvork.git
 cd Netvork
 sh local_setup.sh
 ```
-3.run local_run.sh to run the app
+3.activate virtual environment
+```
+source .env/bin/activate
+```
+4.run local_run.sh to run the app
 ```
 sh local_run.sh
 ```
-4.open a new terminal branch to run celery worker
+5.open a new terminal branch to run celery worker
 ```
 sh local_workers.sh
 ```
-5.open another terminal to run celery beat
+6.open another terminal to run celery beat
 ```
 sh local_beat.sh
 ```
-6.open browser and search
+7.open browser and search
 ```
 http://127.0.0.1:8080/
 ```
